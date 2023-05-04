@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>I am listening!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 400px;
+            width: 100%;
+            background-color: #f9f9f9;
+        }
+        #status {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function startRecording() {
+            document.getElementById('status').innerText = 'Recording Audio - Speak now!';
+        }
+        function showResult() {
+            document.getElementById('status').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>I am listening!</h1>
+        <form action="/transcribe" method="post">
+            <button type="submit" onclick="startRecording()">Start Recording</button>
+        </form>
+        <p id="status"></p>
+    </div>
+    <div class="container" id="result" style="display: none;">
+        <h2>Whisper ASR Transcription</h2>
+        <p>Sample transcription text goes here.</p>
+    </div>
+</body>
+</html>
