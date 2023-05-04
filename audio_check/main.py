@@ -13,7 +13,7 @@ import openai
 #imports the whisper module, which provides a Python interface for interacting with OpenAI's Whisper automatic speech recognition (ASR) system.
 import whisper
 #This line sets the OpenAI API key, which is used to authenticate requests to the OpenAI API.
-openai.api_key = "sk-**************"
+openai.api_key = "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
 #This line loads the Whisper ASR model.
 model = whisper.load_model("base")
 #This line creates a new Flask web application instance.
