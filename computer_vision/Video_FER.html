@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Emotion detection web app</title>
+	<!-- Include jQuery library from Google CDN -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>Emotion detection web app</h1>
+	<p>Press the buttons below to start and stop the emotion detection:</p>
+	<!-- Create two buttons to start and stop emotion detection, and disable the stop button initially -->
+	<button id="start_button">Start detection</button>
+	<button id="stop_button" disabled>Stop detection</button>
+	<br><br>
+	<!-- Create a div to display the result of emotion detection -->
+	<div id="result_container"></div>
+
+	<!-- JavaScript code using jQuery library -->
+	<script>
+		$(document).ready(function() { // Wait for the document to finish loading
+			// Set up click event listener for the start button
+			$('#start_button').click(function() {
+				// Send a POST request to the '/start_detection' endpoint of the Flask app
+				$.post('/start_detection', function(data) {
+					// Update the result container with the data received from the Flask app
+					$('#result_container').text('Aggregated dominant emotion: ' + data);
+					// Enable the stop button and disable the start button
+					$('#stop_button').prop('disabled', false);
+					$('#start_button').prop('disabled', true);
+				});
+			});
+
+			// Set up click event listener for the stop button
+			$('#stop_button').click(function() {
+				// Send a POST request to the '/stop_detection' endpoint of the Flask app
+				$.post('/stop_detection', function(data) {
+					// Disable the stop button and enable the start button
+					$('#stop_button').prop('disabled', true);
+					$('#start_button').prop('disabled', false);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
